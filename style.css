@@ -7,6 +7,13 @@
           box-sizing: inherit;
 }
 
+:root {
+  --faint-red: hsl(0, 36%, 70%);
+  --soft-red: hsl(0, 93%, 68%);
+  --grad-faint-red: hsl(0, 80%, 86%);
+  --grad-faint-red-2: hsl(0, 74%, 74%);
+}
+
 html {
   font-size: 62.5%;
 }
@@ -16,11 +23,13 @@ body {
           box-sizing: border-box;
   font-size: 1.6rem;
   background: url("./images/bg-pattern-desktop.svg");
+  background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
 
 .card {
+  position: relative;
   --ip-offset: 2rem;
   height: 100vh;
   display: -webkit-box;
@@ -28,8 +37,28 @@ body {
   display: flex;
 }
 
+@media only screen and (max-width: 500px) {
+  .card {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    height: auto;
+  }
+}
+
 .card__logo {
+  margin-top: 2rem;
   margin-bottom: 10rem;
+}
+
+@media only screen and (max-width: 500px) {
+  .card__logo {
+    position: absolute;
+    top: 3.675rem;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+  }
 }
 
 .card__text {
@@ -47,7 +76,18 @@ body {
       -ms-flex-pack: start;
           justify-content: flex-start;
   padding: 5rem 10rem;
-  margin: 5rem 10rem auto 5rem;
+  margin: auto 6rem auto 5rem;
+}
+
+@media only screen and (max-width: 500px) {
+  .card__text {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 100%;
+            flex: 1 1 100%;
+    padding: 5rem;
+    margin: 0;
+    text-align: center;
+  }
 }
 
 .card__title {
@@ -60,7 +100,7 @@ body {
 
 .card__title--colored {
   font-weight: 300;
-  color: #ce9797;
+  color: var(--faint-red);
 }
 
 .card__title:last-of-type {
@@ -68,7 +108,7 @@ body {
 }
 
 .card__info {
-  color: #ce9797;
+  color: var(--faint-red);
   font-family: 'Josefin Sans', sans-serif;
   font-weight: normal;
   margin-bottom: 2rem;
@@ -84,50 +124,56 @@ body {
           align-items: stretch;
 }
 
+@media only screen and (max-width: 500px) {
+  .card__group {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
 .card__input {
-  border: 1px solid #ce9797;
+  border: 1px solid var(--faint-red);
   border-radius: 5rem;
   width: 80%;
   padding-left: var(--ip-offset);
 }
 
 .card__input::-webkit-input-placeholder {
-  color: #ce9797;
+  color: var(--faint-red);
   display: inline-block;
   font-family: 'Josefin Sans', sans-serif;
 }
 
 .card__input:-ms-input-placeholder {
-  color: #ce9797;
+  color: var(--faint-red);
   display: inline-block;
   font-family: 'Josefin Sans', sans-serif;
 }
 
 .card__input::-ms-input-placeholder {
-  color: #ce9797;
+  color: var(--faint-red);
   display: inline-block;
   font-family: 'Josefin Sans', sans-serif;
 }
 
 .card__input::placeholder {
-  color: #ce9797;
+  color: var(--faint-red);
   display: inline-block;
   font-family: 'Josefin Sans', sans-serif;
 }
 
 .card__input:focus {
   outline: none;
-  -webkit-box-shadow: 0 0 5px #ce9797;
-          box-shadow: 0 0 5px #ce9797;
+  -webkit-box-shadow: 0 0 5px var(--faint-red);
+          box-shadow: 0 0 5px var(--faint-red);
 }
 
 .card__cta {
-  --width: 3rem;
+  --width: 2.5rem;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  background: -webkit-gradient(linear, left top, left bottom, from(#f8bfbf), to(#ee8c8c));
-  background: linear-gradient(#f8bfbf, #ee8c8c);
+  background: linear-gradient(135deg, var(--grad-faint-red), var(--grad-faint-red-2));
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -138,14 +184,14 @@ body {
   border: none;
   margin: 1px;
   border-radius: 5rem;
-  margin-left: calc((var(--width)*2 + 12px + 1px) * -1);
+  margin-left: calc((var(--width)*2 + 12px ) * -1);
 }
 
 .card__label {
   padding-left: var(--ip-offset);
   margin-top: 1rem;
   display: inline-block;
-  color: #ce9797;
+  color: var(--faint-red);
   visibility: hidden;
   opacity: 0;
 }
@@ -161,6 +207,15 @@ body {
           flex: 0 0 40%;
 }
 
+@media only screen and (max-width: 500px) {
+  .card__image-box {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 1 100%;
+            flex: 1 1 100%;
+    margin-top: 7.5rem;
+  }
+}
+
 .card__image {
   width: 100%;
   height: 100%;
@@ -170,8 +225,9 @@ body {
 }
 
 footer {
-  border-top: 1px solid #ee8c8c;
+  border-top: 1px solid var(--faint-red);
   font-size: 1.6rem;
+  font-family: 'Josefin Sans', sans-serif;
   padding: 2rem;
 }
 
@@ -180,6 +236,6 @@ footer .attribution {
 }
 
 footer .attribution a {
-  color: #ee8c8c;
+  color: var(--soft-red);
 }
 /*# sourceMappingURL=style.css.map */
